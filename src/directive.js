@@ -27,8 +27,8 @@
     var directive = {
       link: link,
       scope: {
-        gmapAutocompleteCallback: '&',
-        gmapAutocompleteModel: '='
+        gmapAutocompleteCallback: '&?',
+        gmapAutocompleteModel: '=?'
       }
     };
     return directive;
