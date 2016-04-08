@@ -2,17 +2,7 @@
   'use strict';
   angular
     .module('google.autocomplete', [])
-    .config(Config)
     .directive('gmapAutocomplete', gmapAutocomplete);
-
-  Config.$inject = ['uiGmapGoogleMapApiProvider'];
-
-  function Config(uiGmapGoogleMapApiProvider) {
-    uiGmapGoogleMapApiProvider.configure({
-      key: '<your google maps api key goes here>',
-      libraries: 'geometry,places'
-    });
-  };
 
   gmapAutocomplete.$inject = ['$q', 'uiGmapGoogleMapApi'];
   /* @ngInject */
@@ -51,7 +41,6 @@
       // make google.maps object available
       return uiGmapGoogleMapApi
       .then(function(maps) {
-        console.log(maps);
         // promise-ify the navigator.geolocation request
         return $q(function(resolve, reject) {
           var autocomplete = new maps.places.Autocomplete(element, {types: ['geocode']});
