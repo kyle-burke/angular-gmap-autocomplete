@@ -1,8 +1,19 @@
 (function() {
   'use strict';
   angular
-    .module('google.autocomplete')
+    .module('google.autocomplete', [])
+    .config(Config)
     .directive('gmapAutocomplete', gmapAutocomplete);
+
+  Config.$inject = ['uiGmapGoogleMapApiProvider'];
+
+  function Config(uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+      key: '<your google maps api key goes here>',
+      libraries: 'geometry,places'
+    });
+  };
+
   gmapAutocomplete.$inject = ['$q', 'uiGmapGoogleMapApi'];
   /* @ngInject */
   function gmapAutocomplete($q, uiGmapGoogleMapApi) {
@@ -16,8 +27,8 @@
     var directive = {
       link: link,
       scope: {
-        gmapAutocompleteCallback: '&?',
-        gmapAutocompleteModel: '=?'
+        gmapAutocompleteCallback: '&',
+        gmapAutocompleteModel: '='
       }
     };
     return directive;
@@ -28,7 +39,7 @@
 
         generateAutocomplete(element[0], scope.gmapAutocompleteCallback)
         .then(function(autocomplete) {
-          scope.ngModel = autocomplete;
+          scope.gmapAutocompleteModel = autocomplete;
         });
       }
     }
@@ -40,6 +51,7 @@
       // make google.maps object available
       return uiGmapGoogleMapApi
       .then(function(maps) {
+        console.log(maps);
         // promise-ify the navigator.geolocation request
         return $q(function(resolve, reject) {
           var autocomplete = new maps.places.Autocomplete(element, {types: ['geocode']});

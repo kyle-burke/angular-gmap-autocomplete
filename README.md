@@ -10,3 +10,7 @@ Example:
        gmap-autocomplete-model="vm.autocomplete"
        gmap-autocomplete-callback="vm.callback()">
 ```
+
+### Dependencies
+ - [AngularJS](https://github.com/angular/angular.js/)
+ - [AngularUI Google Maps](https://github.com/angular-ui/angular-google-maps)

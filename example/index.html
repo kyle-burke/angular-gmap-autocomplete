@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="autocomplete-example">
+<head>
+  <style>
+    #autocomplete-search { width: 300px; }
+  </style>
+</head>
+<body>
+  <div ng-controller="ExampleController as vm">
+    <input type="text"
+           id="autocomplete-search"
+           gmap-autocomplete
+           gmap-autocomplete-model="vm.autocomplete"
+           gmap-autocomplete-callback="vm.callback()">
+  </div>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.9.0/lodash.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+  <script src="./dependencies/angular-google-maps.js"></script>
+  <script src="./dependencies/angular-simple-logger.js"></script>
+  <script src="../src/directive.js"></script>
+  <script src="./example.js"></script>
+</body>
+</html>
